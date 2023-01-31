@@ -6,20 +6,40 @@
   <section>
     <ul>
       <li>
-        Game type (1 player is default): {{ gameTypes[gameType] }}
+        Game type (1 player is default): {{ gameType }}
+      </li>
+      <li>
+        Game state: {{ gameState }}
       </li>
     </ul>
   </section>
-  <section>
+  <section *ngIf="gameState == GameStates.New">
     <h2>Select game type:</h2>
     <ul>
       <li>
-        <button (click)="selectGameType(1)">1 Player</button>
+        <button (click)="selectGameType(GameTypes.OnePlayer)">1 Player</button>
       </li>
       <li>
-        <button (click)="selectGameType(2)">2 Player</button>
+        <button (click)="selectGameType(GameTypes.TwoPlayers)">2 Player</button>
       </li>
     </ul>
+  </section>
+
+  <section *ngIf="gameState == GameStates.Started">
+    <h2>Enter {{ (gameType == GameTypes.OnePlayer) ? 'your name' : 'players names' }}</h2>
+      <ul>
+        <li>
+          <label for="playerOneName">Player One Name</label>
+          <input type="text" id="playerOneName"
+                 [(ngModel)]="playerOneName" name="playerOneName">
+        </li>
+        <li *ngIf="gameType == GameTypes.TwoPlayers">
+          <label for="playerTwoName">Player Two Name</label>
+          <input type="text" id="playerTwoName"
+                 [(ngModel)]="playerTwoName" name="playerTwoName">
+        </li>
+      </ul>
+      <button (click)="play()"></button>
   </section>
 </main>
 <Footer>
