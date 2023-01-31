@@ -3,29 +3,6 @@
 </header>
 <main>
   <!-- <router-outlet></router-outlet> -->
-  <section>
-    <ul>
-      <li>
-        Game type (1 player is default): {{ gameType }}
-      </li>
-      <li>
-        Game state: {{ gameState }}
-      </li>
-      <li>
-        Player 1 Name: {{ playerOneName }}
-      </li>
-      <li *ngIf="gameType == GameTypes.TwoPlayers">
-        Player 2 Name: {{ playerTwoName }}
-      </li>
-      <li>
-        Player 1 Choice: {{ hands.playerOne }}
-      </li>
-      <li>
-        Player 2 Choice: {{ hands.playerTwo }}
-      </li>
-      
-    </ul>
-  </section>
   <section *ngIf="gameState == GameStates.New">
     <h2>Select game type:</h2>
     <ul>
@@ -42,12 +19,12 @@
     <h2>Enter {{ (gameType == GameTypes.OnePlayer) ? 'your name' : 'players names' }}</h2>
       <ul>
         <li>
-          <label for="playerOneName">Player One Name</label>
+          <label for="playerOneName">Player One Name: </label>
           <input type="text" id="playerOneName"
                  [(ngModel)]="playerOneName" name="playerOneName">
         </li>
         <li *ngIf="gameType == GameTypes.TwoPlayers">
-          <label for="playerTwoName">Player Two Name</label>
+          <label for="playerTwoName">Player Two Name: </label>
           <input type="text" id="playerTwoName"
                  [(ngModel)]="playerTwoName" name="playerTwoName">
         </li>
