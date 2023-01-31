@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'rps-game';
+  title = 'RPS Game';
+  gameType = 0;
+  gameTypes = ['1 Player', '2 Players'];
+
+  selectGameType(gameTypeSelected: number) {
+    this.gameType = gameTypeSelected;
+  }
 }

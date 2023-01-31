@@ -1,8 +1,26 @@
 <header>
-  Game Title
+  <h1>{{ title }}</h1>
 </header>
 <main>
-  <router-outlet></router-outlet>
+  <!-- <router-outlet></router-outlet> -->
+  <section>
+    <ul>
+      <li>
+        Game type (1 player is default): {{ gameTypes[gameType] }}
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>Select game type:</h2>
+    <ul>
+      <li>
+        <button (click)="selectGameType(1)">1 Player</button>
+      </li>
+      <li>
+        <button (click)="selectGameType(2)">2 Player</button>
+      </li>
+    </ul>
+  </section>
 </main>
 <Footer>
   Copyright :)
