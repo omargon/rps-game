@@ -45,6 +45,7 @@ export class AppComponent {
     playerOne: PlayOptions.Rock,
     playerTwo: PlayOptions.Rock,
   };
+  winner: Players | null = null;
 
   selectGameType(gameTypeSelected: GameTypes) {
     this.gameType = gameTypeSelected;
@@ -64,6 +65,7 @@ export class AppComponent {
       }
     } else {
       this.hands.playerTwo = playOption;
+      this.selectWinner(); 
       this.gameState = GameStates.EndOfRound;
     }
   }
@@ -72,5 +74,19 @@ export class AppComponent {
     const computerChoices = Object.values(PlayOptions);
     const randomIndex = Math.floor(Math.random() * 3);
     this.submitPlayerHand(computerChoices[randomIndex]);
+  }
+
+  selectWinner() {
+    if (this.hands.playerOne !== this.hands.playerTwo) {
+      if (
+        (this.hands.playerOne == PlayOptions.Paper && this.hands.playerTwo == PlayOptions.Rock) || 
+        (this.hands.playerOne == PlayOptions.Rock && this.hands.playerTwo == PlayOptions.Scissors) ||
+        (this.hands.playerOne == PlayOptions.Scissors && this.hands.playerTwo == PlayOptions.Paper)
+        ) {
+        this.winner = Players.PlayerOne;
+      } else {
+        this.winner = Players.PlayerTwo;
+      }
+    }
   }
 }

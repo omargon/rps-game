@@ -70,6 +70,20 @@
       </ul>
   </section>
 
+  <section *ngIf="gameState == GameStates.EndOfRound">
+    <ul>
+      <li>
+        {{ playerOneName }} Choice: {{ hands.playerOne }}
+      </li>
+      <li>
+        {{ gameType == GameTypes.TwoPlayers ? playerTwoName : 'Computer' }} Choice: {{ hands.playerTwo }}
+      </li>
+    </ul>
+    <h1 *ngIf="!winner">Tie</h1>
+    <h1 *ngIf="winner == Players.PlayerOne"> {{ playerOneName }} wins!</h1>
+    <h1 *ngIf="winner == Players.PlayerTwo"> {{ (gameType == GameTypes.TwoPlayers) ? playerTwoName : 'Computer' }} wins!</h1>
+  </section>
+
 </main>
 <Footer>
   Copyright :)
