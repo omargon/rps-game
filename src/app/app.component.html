@@ -79,9 +79,26 @@
         {{ gameType == GameTypes.TwoPlayers ? playerTwoName : 'Computer' }} Choice: {{ hands.playerTwo }}
       </li>
     </ul>
+
     <h1 *ngIf="!winner">Tie</h1>
     <h1 *ngIf="winner == Players.PlayerOne"> {{ playerOneName }} wins!</h1>
     <h1 *ngIf="winner == Players.PlayerTwo"> {{ (gameType == GameTypes.TwoPlayers) ? playerTwoName : 'Computer' }} wins!</h1>
+    
+    <h3>Score:</h3>
+    <ul>
+      <li>
+        {{ playerOneName }} wins: {{ playerOneWins }}
+      </li>
+      <li>
+        {{ gameType == GameTypes.TwoPlayers ? playerTwoName : 'Computer' }} wins: {{ playerTwoWins }}
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <button (click)="nextRound()">Next Round</button>
+        <button (click)="startOver()">Start Over</button>
+      </li>
+    </ul>
   </section>
 
 </main>

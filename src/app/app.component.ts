@@ -40,13 +40,14 @@ export class AppComponent {
   gameState = GameStates.New;
   playerOneName = 'Player One';
   playerTwoName = 'Player Two';
-  currentPlayer = Players.PlayerOne;
   hands = {
     playerOne: PlayOptions.Rock,
     playerTwo: PlayOptions.Rock,
   };
   winner: Players | null = null;
-
+  playerOneWins = 0;
+  playerTwoWins = 0;
+  
   selectGameType(gameTypeSelected: GameTypes) {
     this.gameType = gameTypeSelected;
     this.gameState = GameStates.Started;
@@ -84,9 +85,26 @@ export class AppComponent {
         (this.hands.playerOne == PlayOptions.Scissors && this.hands.playerTwo == PlayOptions.Paper)
         ) {
         this.winner = Players.PlayerOne;
+        this.playerOneWins++;
       } else {
         this.winner = Players.PlayerTwo;
+        this.playerTwoWins++;
       }
     }
+  }
+
+  nextRound() {
+    this.gameState = GameStates.Player1Turn;
+    this.winner = null;
+  }
+
+  startOver() {
+    this.gameType = GameTypes.OnePlayer;
+    this.gameState = GameStates.New;
+    this.playerOneName = 'Player One';
+    this.playerTwoName = 'Player Two';
+    this.winner = null;
+    this.playerOneWins = 0;
+    this.playerTwoWins = 0;
   }
 }
