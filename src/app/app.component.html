@@ -11,6 +11,19 @@
       <li>
         Game state: {{ gameState }}
       </li>
+      <li>
+        Player 1 Name: {{ playerOneName }}
+      </li>
+      <li *ngIf="gameType == GameTypes.TwoPlayers">
+        Player 2 Name: {{ playerTwoName }}
+      </li>
+      <li>
+        Player 1 Choice: {{ hands.playerOne }}
+      </li>
+      <li>
+        Player 2 Choice: {{ hands.playerTwo }}
+      </li>
+      
     </ul>
   </section>
   <section *ngIf="gameState == GameStates.New">
@@ -39,8 +52,24 @@
                  [(ngModel)]="playerTwoName" name="playerTwoName">
         </li>
       </ul>
-      <button (click)="play()"></button>
+      <button (click)="play()">Play</button>
   </section>
+
+  <section *ngIf="gameState == GameStates.Player1Turn || gameState == GameStates.Player2Turn">
+    <h2>Make your choice {{ (gameState == GameStates.Player1Turn) ? playerOneName : playerTwoName }} </h2>
+      <ul>
+        <li>
+          <button (click)="submitPlayerHand(PlayOptions.Rock)"> {{ PlayOptions.Rock }}</button>
+        </li>
+        <li>
+          <button (click)="submitPlayerHand(PlayOptions.Paper)"> {{ PlayOptions.Paper }}</button>
+        </li>
+        <li>
+          <button (click)="submitPlayerHand(PlayOptions.Scissors)"> {{ PlayOptions.Scissors }}</button>
+        </li>
+      </ul>
+  </section>
+
 </main>
 <Footer>
   Copyright :)
